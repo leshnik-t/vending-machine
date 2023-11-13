@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Wrapper from './components/wrapper/Wrapper';
+import Wallet from './features/wallet/Wallet';
+import VendingMachine from './components/vendingMachine/VendingMachine';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <Wrapper>
+          <Wallet />
+        </Wrapper>
       </header>
+      <main>
+        <Wrapper>
+          <h2>Look at the items and click on the coins below to enter amount</h2>
+          <VendingMachine />
+        </Wrapper>
+      </main>
+      <footer>
+        <Wrapper>
+          &copy; 2023
+        </Wrapper>
+      </footer>
     </div>
   );
 }
