@@ -1,22 +1,25 @@
 import './item.css';
 
 const Item = ({ props }) => {
-    const { itemKey, itemLabel, itemPrice, itemImage } =  props;
+    const { slotLabel, ...item } =  props;
     return (
-        <div className="item" data-label={itemLabel}>
+        <div className="item" data-label={slotLabel}>
             <div className="item-label">
-                {itemLabel}
+                {slotLabel}
             </div>
-            { itemImage !== "" &&
+            <div className="item-quantity">
+                {`${item?.quantity ? item.quantity : 0}`}
+            </div>
+            { item?.imageUrl &&
                 <div className="item-image">
                     <img 
-                        src={itemImage} 
-                        alt={`item sku ${itemKey}`}
+                        src={item.imageUrl} 
+                        alt={`${item.name} ${item.sku}`}
                     />
                 </div>
             }
             <div className="item-price">
-                {`€ ${itemPrice}`}
+                {`€ ${item?.price ? item.price : 0}`}
             </div>
         </div>
     )

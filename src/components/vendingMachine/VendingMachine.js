@@ -1,7 +1,7 @@
 import './vending-machine.css';
-import ItemsList from '../../features/items/ItemsList';
 import KeyboardContainer from '../keyboardContainer/KeyboardContainer';
 import WalletInput from '../walletInput/WalletInput';
+import ItemsList from '../../features/items/ItemsList';
 
 const VendingMachine = () => {
     return (
