@@ -1,8 +1,8 @@
 import './items-list.css';
 import { useSelector } from 'react-redux';
-import { selectAllItems } from './itemsSlice';
+import { selectAllItems } from '../itemsSlice';
 
-import Item from './Item';
+import Item from '../item/Item';
 
 const ItemsList = () => {
     const items = useSelector(selectAllItems);

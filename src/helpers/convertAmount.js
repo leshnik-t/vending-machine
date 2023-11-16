@@ -18,9 +18,9 @@ export const amountToCoins = (amount) => {
     }
 
     return coinsMap;
-  }
+}
 
-  export const coinsToAmount = (coinsMap) => {
+export const coinsToAmount = (coinsMap) => {
     let amountTotal = 0;
 
     for (const key of coinsMap.keys()) {
@@ -28,4 +28,4 @@ export const amountToCoins = (amount) => {
     }
 
     return (amountTotal / 100).toFixed(2);
-  }
+}

@@ -5,7 +5,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "A2",
@@ -13,7 +13,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "A3",
@@ -21,7 +21,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "A4",
@@ -29,7 +29,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "B1",
@@ -37,7 +37,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "B2",
@@ -45,7 +45,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "B3",
@@ -53,7 +53,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "B4",
@@ -61,7 +61,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "C1",
@@ -69,7 +69,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "C2",
@@ -85,7 +85,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "C4",
@@ -93,7 +93,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "D1",
@@ -101,7 +101,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "D2",
@@ -109,7 +109,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "D3",
@@ -117,7 +117,7 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
     {
         "slotLabel": "D4",
@@ -125,7 +125,6 @@ export const itemsInitialState = [
         "imageUrl": "",
         "sku": "",
         "price": "",
-        "quantity": ""
+        "quantity": "0"
     },
 ]
-

@@ -10,7 +10,7 @@ const Item = ({ props }) => {
             <div className="item-quantity">
                 {`${item?.quantity ? item.quantity : 0}`}
             </div>
-            { item?.imageUrl &&
+            {item?.imageUrl && item?.quantity && item.quantity > 0 &&
                 <div className="item-image">
                     <img 
                         src={item.imageUrl} 
@@ -19,7 +19,7 @@ const Item = ({ props }) => {
                 </div>
             }
             <div className="item-price">
-                {`€ ${item?.price ? item.price : 0}`}
+                {`€ ${item?.price && item?.quantity && item.quantity > 0 ? item.price : 0}`}
             </div>
         </div>
     )

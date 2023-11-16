@@ -1,7 +1,10 @@
 import './App.css';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchItemBySlotLabel } from './features/items/itemsSlice';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchUserByUsername } from './features/user/userSlice';
+import { fetchItemBySlotLabel, selectNumberOfProducts } from './features/items/itemsSlice';
+
 
 import Wrapper from './components/wrapper/Wrapper';
 import Wallet from './components/wallet/Wallet';
@@ -9,53 +12,80 @@ import VendingMachine from './components/vendingMachine/VendingMachine';
 
 function App() {
   const dispatch = useDispatch();
-  const itemStatus = useSelector(state => state.items.status);
-  const error = useSelector(state => state.items.error)
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isVendingMachineEmpty, setIsVendingMachineEmpty] = useState(false);
+
+  const numberOfProducts = useSelector(selectNumberOfProducts);
 
   useEffect(() => {
-        if (itemStatus === 'idle') {
-          dispatch(fetchItemBySlotLabel("A1"));
-        }
-  }, [itemStatus, dispatch]);
-
-
-  let content
-
-  switch(true) {
-    case (itemStatus=== 'loading'): {
-      content = <p>Loading items ...</p>
-      break;
+    if (numberOfProducts === 0) {
+      setIsVendingMachineEmpty(true);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 3000);
+      
     }
-    case (itemStatus === 'succeeded'): {
-      break;
+  }, [numberOfProducts]);
+
+  useEffect(() => {
+    function handleStorage() {
+      console.log("into the storage");
     }
-    case (itemStatus === 'failed'): {
-      content = <div>Something went wrong. Please try again later!</div>;
-      console.log("ERROR", error);
-      break;
+
+    window.addEventListener("storage", handleStorage);
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      return await Promise.all([
+        dispatch(fetchUserByUsername('fakeuser')),
+        dispatch(fetchItemBySlotLabel('A1'))
+      ])
     }
-    default: break;
-  }
+
+    fetchData()
+      .then((result) => {
+        setIsLoading(false);
+        
+        result.forEach((promiseResult) => {
+          if (promiseResult.meta.requestStatus
+            !== 'fulfilled') {
+            throw Error('Something went worng! Please, try again later!')
+          }
+        })
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setError(error.message);
+      })
+
+  }, [dispatch]);
   
   return (
     <div className="App">
-      <header>
-        <Wrapper>
-          <Wallet />
-        </Wrapper>
-      </header>
-      <main>
-        <Wrapper>
-          {content}
-          <h2>Look at the items and click on the coins below to enter amount</h2>
-          <VendingMachine />
-        </Wrapper>
-      </main>
-      <footer>
-        <Wrapper>
-          &copy; 2023
-        </Wrapper>
-      </footer>
+      {isVendingMachineEmpty && <p className="alert alert-danger message">Vending Machine is empty!</p>}
+      {isLoading && <p className="alert alert-primary message">Loading application. Please wait!</p>}
+      {error && <p className="alert alert-danger message">{error}</p>}
+      {!isLoading && !error && 
+      <>
+        <header>
+          <Wrapper>
+            <Wallet />
+          </Wrapper>
+        </header>
+        <main>
+          <Wrapper>
+            <h2>Look at the items and click on the coins below to enter amount</h2>
+            <VendingMachine />
+          </Wrapper>
+        </main>
+        <footer>
+          <Wrapper>
+            &copy; 2023
+          </Wrapper>
+        </footer>
+      </>}
     </div>
   );
 }

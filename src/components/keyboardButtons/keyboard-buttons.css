@@ -1,0 +1,30 @@
+.keyboard-buttons{
+    padding: 1.25rem  0rem;
+    margin-bottom: 1.25rem;
+}
+.keyboard-buttons .row {
+    flex-direction: column;
+}
+.keyboard-buttons .row > .col {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.keyboard-buttons button {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color: black;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.keyboard-buttons button:disabled {
+    cursor: not-allowed;
+    background-color: gray;
+}

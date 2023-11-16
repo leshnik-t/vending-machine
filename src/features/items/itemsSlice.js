@@ -4,14 +4,9 @@ import { itemsInitialState } from './itemsInitialState';
 
 const initialState = {
     items: itemsInitialState,
-    status: 'idle',
-    error: null
+    numberOfProducts: null,
 }
 
-// export const fetchItems = createAsyncThunk('items/fetchItem', async () => {
-//     const response = await client.get('/items');
-//     return response.data;
-// })
 export const fetchItemBySlotLabel = createAsyncThunk('items/fetchItemBySlotLabel', async (slotLabel) => {
     const response = await client.get(`/items/${slotLabel}`);
     return response.data;
@@ -21,24 +16,17 @@ const itemsSlice = createSlice({
     name: 'items',
     initialState,
     reducers: { 
-        itemQuantityDecrement(state, action) {
-            const { 
-                slotLabel,
-                quantity
-            } = action.payload;
+        decrementItemQuantity(state, action) {
+            const existingItem = state.items.find((item) => item.slotLabel === action.payload)
 
-            const existingItem = state.items.find(item => item.slotLabel === slotLabel)
             if (existingItem) {
-                existingItem.quantity = quantity - 1;
+                existingItem.quantity -= 1;
+                state.numberOfProducts -= 1;
             }
-        }
+        },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchItemBySlotLabel.pending, (state, action) => {
-            state.status = 'loading'
-        })
         builder.addCase(fetchItemBySlotLabel.fulfilled, (state, action) => {
-            state.status = 'succeeded'
             const { 
                 slotLabel,
                 name,
@@ -55,29 +43,18 @@ const itemsSlice = createSlice({
                 existingItem.sku = sku;
                 existingItem.price = price;
                 existingItem.quantity = quantity;
+                state.numberOfProducts = +state.numberOfProducts + +quantity;
             }
         })
-        builder.addCase(fetchItemBySlotLabel.rejected, (state, action) => {
-            state.status = 'failed'
-            state.error = action.error.message
-        })
-        // builder.addCase(fetchItems.pending, (state, action) => {
-        //     state.status = 'loading'
-        // })
-        // builder.addCase(fetchItems.fulfilled, (state, action) => {
-        //     state.status = 'succeeded'
-        //     // Add any fetched posts to the array
-        //     state.items = state.items.concat(action.payload)
-        // })
-        // builder.addCase(fetchItems.rejected, (state, action) => {
-        //     state.status = 'failed'
-        //     state.error = action.error.message
-        // })
     }
 });
 
+export const { 
+    decrementItemQuantity,
+} = itemsSlice.actions;
+
 export default itemsSlice.reducer;
 
-export const selectAllItems = state => state.items.items
-export const selectItemBySlotLabel = (state, slotLabel) =>
-  state.items.find(item => item.slotLabel === slotLabel)
+export const selectAllItems = (state) => state.items.items;
+export const selectNumberOfProducts = (state) => state.items.numberOfProducts;
+

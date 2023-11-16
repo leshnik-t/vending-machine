@@ -1,7 +1,7 @@
 import './vending-machine.css';
 import KeyboardContainer from '../keyboardContainer/KeyboardContainer';
-import WalletInput from '../walletInput/WalletInput';
-import ItemsList from '../../features/items/ItemsList';
+import DepositInput from '../../features/deposit/depositInput/DepositInput';
+import ItemsList from '../../features/items/itemList/ItemsList';
 
 const VendingMachine = () => {
     return (
@@ -12,7 +12,7 @@ const VendingMachine = () => {
                         <ItemsList />
                     </div>
                     <div className="col-md-4">
-                        <WalletInput />
+                        <DepositInput />
                     </div>
                 </div>
                 <div className="row">

@@ -1,6 +1,6 @@
 import './wallet.css';
 import { useSelector } from 'react-redux';
-import { selectUser }  from '../../features/users/usersSlice';
+import { selectUser }  from '../../features/user/userSlice';
 
 const Wallet = () => {
     const user = useSelector(selectUser);
@@ -9,7 +9,7 @@ const Wallet = () => {
             <div className="container-fluid">
               <div className="row">
                 <div className="col">
-                  <h1>Your wallet: <span>&euro; {user?.wallet ? user.wallet : 0}</span></h1>
+                  <h1>Your wallet: <span>&euro; {user?.wallet ? user.wallet : "0.00"}</span></h1>
                 </div>
               </div>
             </div>
