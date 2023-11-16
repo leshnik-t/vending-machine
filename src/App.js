@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchUserByUsername } from './features/user/userSlice';
 import { fetchItemBySlotLabel, selectNumberOfProducts } from './features/items/itemsSlice';
+import { initializeCoins } from './features/coins/coinsSlice';
 
 
 import Wrapper from './components/wrapper/Wrapper';
-import Wallet from './components/wallet/Wallet';
+import Wallet from './features/user/wallet/Wallet';
 import VendingMachine from './components/vendingMachine/VendingMachine';
 
 function App() {
@@ -29,18 +30,10 @@ function App() {
   }, [numberOfProducts]);
 
   useEffect(() => {
-    function handleStorage() {
-      console.log("into the storage");
-    }
-
-    window.addEventListener("storage", handleStorage);
-  }, [])
-
-  useEffect(() => {
     const fetchData = async () => {
       return await Promise.all([
         dispatch(fetchUserByUsername('fakeuser')),
-        dispatch(fetchItemBySlotLabel('A1'))
+        dispatch(fetchItemBySlotLabel('C3'))
       ])
     }
 
@@ -52,8 +45,12 @@ function App() {
           if (promiseResult.meta.requestStatus
             !== 'fulfilled') {
             throw Error('Something went worng! Please, try again later!')
+          } else {
+            if (promiseResult.type === 'user/fetchUserByUsername/fulfilled') {
+              dispatch(initializeCoins([promiseResult.payload.wallet, promiseResult.payload.currency]));
+            }
           }
-        })
+        });
       })
       .catch((error) => {
         setIsLoading(false);

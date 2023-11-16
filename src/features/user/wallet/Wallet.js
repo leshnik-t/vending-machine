@@ -1,6 +1,6 @@
 import './wallet.css';
 import { useSelector } from 'react-redux';
-import { selectUser }  from '../../features/user/userSlice';
+import { selectUser }  from '../userSlice';
 
 const Wallet = () => {
     const user = useSelector(selectUser);

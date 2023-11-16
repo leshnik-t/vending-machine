@@ -1,13 +1,11 @@
 import './deposit-input.css';
 import { useSelector } from 'react-redux';
 
-import { selectWallet }  from '../../user/userSlice';
 import { selectDeposit }  from '../depositSlice';
 
-import CoinsContainer from '../../../components/coinsContainer/CoinsContainer';
+import CoinsList from '../../coins/coinsList/CoinsList';
 
 const DepositInput = () => {
-    const wallet = useSelector(selectWallet);
     const deposit = useSelector(selectDeposit);
     
     return (
@@ -32,7 +30,7 @@ const DepositInput = () => {
             </div>
             <div className="row">
                 <div className="col">
-                    <CoinsContainer deposit={wallet ? wallet : "0.00"}/>
+                    <CoinsList />
                 </div>
             </div>
         </section>

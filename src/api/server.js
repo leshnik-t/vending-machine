@@ -6,12 +6,12 @@ const ARTIFICIAL_DELAY_MS = 1000
 
 const items = [
     {
-        "slotLabel": "A1", 
+        "slotLabel": "C3", 
         "name": "lollipop", 
         "imageUrl": "https://img.freepik.com/premium-vector/realistic-lollipop-composition-with-image-sweet-candy-wooden-stick-transparent-background-vector-illustration_1284-67177.jpg",
         "sku": nanoid(),
         "price": "0.10",
-        "quantity": "15", 
+        "quantity": "3", 
     },
 ];
 const users = [
@@ -21,6 +21,7 @@ const users = [
         "firstName": "Fake",
         "lastName": "User",
         "wallet": "3.46",
+        "currency": "EUR"
     }
 ];
 

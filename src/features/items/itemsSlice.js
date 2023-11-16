@@ -43,6 +43,7 @@ const itemsSlice = createSlice({
                 existingItem.sku = sku;
                 existingItem.price = price;
                 existingItem.quantity = quantity;
+                console.log("counting items");
                 state.numberOfProducts = +state.numberOfProducts + +quantity;
             }
         })

@@ -1,7 +1,8 @@
 import './coin.css';
 import { useDispatch } from 'react-redux';
-import { decrementWallet } from '../../features/user/userSlice';
-import { incrementDeposit } from '../../features/deposit/depositSlice';
+import { decrementWallet } from '../../user/userSlice';
+import { incrementDeposit } from '../../deposit/depositSlice';
+import { decrementCoins } from '../../coins/coinsSlice';
 
 const Coin = ({props}) => {
     const [ value, count] = props;
@@ -11,6 +12,7 @@ const Coin = ({props}) => {
     const handleClick = (e) => {
         dispatch(decrementWallet(processedValue));
         dispatch(incrementDeposit(processedValue));
+        dispatch(decrementCoins(value));
     }
     return (
         <div className="col">

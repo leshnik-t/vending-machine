@@ -10,6 +10,9 @@ import {
     deleteDeposit 
 } from '../../features/deposit/depositSlice';
 import { 
+    incrementCoins
+} from '../../features/coins/coinsSlice';
+import { 
     selectCurrentOrder,
     deleteCurrentOrder,
     selectAllOrders,
@@ -49,6 +52,7 @@ const OperationButtons = () => {
                 dispatch(decrementItemQuantity(order.itemSlotLabel));
                 dispatch(updateOrder({id: currentOrder.id, status: 'fulfilled'}));
                 dispatch(deleteDeposit());
+                dispatch(incrementCoins(diffDepositPrice));
                 dispatch(incrementWallet(diffDepositPrice));
 
                 setOrder(null);
@@ -71,6 +75,7 @@ const OperationButtons = () => {
             dispatch(updateOrder({id: currentOrder.id, status: 'rejected'}));
         }
 
+        dispatch(incrementCoins(deposit));
         dispatch(deleteDeposit());
         dispatch(incrementWallet(deposit));
     }

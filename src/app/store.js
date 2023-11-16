@@ -4,12 +4,14 @@ import userReducer from '../features/user/userSlice';
 import itemsReducer from '../features/items/itemsSlice';
 import depositReducer from '../features/deposit/depositSlice';
 import ordersReducer from '../features/orders/ordersSlice';
+import coinsReducer from '../features/coins/coinsSlice';
 
 export default configureStore({
     reducer: {
-        items: itemsReducer,
         user: userReducer,
+        items: itemsReducer,
+        deposit: depositReducer,
         orders: ordersReducer,
-        deposit: depositReducer
+        coins: coinsReducer,
     }
 });

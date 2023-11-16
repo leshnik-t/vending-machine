@@ -24,7 +24,6 @@ const ordersSlice = createSlice({
             state.currentOrder = action.payload;
         },
         deleteCurrentOrder: (state, action) => {
-            console.log("current order NULL");
             state.currentOrder = null;
         }
     },

@@ -9,7 +9,6 @@ import App from './App';
 
 import store from './app/store';
 import { Provider } from 'react-redux';
-import { fetchUserByUsername } from './features/user/userSlice';
 
 // start worker in development mode
 async function enableMocking() {
@@ -27,10 +26,10 @@ async function enableMocking() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 enableMocking().then(() => {
   root.render(
-    // <React.StrictMode>
+    <React.StrictMode>
       <Provider store={store}>
         <App />
       </Provider>
-    // </React.StrictMode>
+    </React.StrictMode>
   );
 })

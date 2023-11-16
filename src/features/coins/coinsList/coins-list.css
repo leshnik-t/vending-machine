@@ -1,10 +1,10 @@
-.coins-container {
+.coins-list {
     padding: 1.25rem 0rem;
 }
-.coins-container .row {
+.coins-list .row {
     align-items: flex-start;
     justify-content: flex-start;
 }
-.coins-container .row > .col {
+.coins-list .row > .col {
     max-width: 60px;
 }
