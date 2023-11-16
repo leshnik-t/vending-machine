@@ -15,7 +15,11 @@ export const fetchItemBySlotLabel = createAsyncThunk('items/fetchItemBySlotLabel
 const itemsSlice = createSlice({
     name: 'items',
     initialState,
-    reducers: { 
+    reducers: {
+        updateNumberOfProducts: (state, action) => {
+            const quantity = state.items.reduce((quantity, currentItem) => quantity + +currentItem.quantity, 0);
+            state.numberOfProducts = quantity;
+        },
         decrementItemQuantity(state, action) {
             const existingItem = state.items.find((item) => item.slotLabel === action.payload)
 
@@ -43,14 +47,13 @@ const itemsSlice = createSlice({
                 existingItem.sku = sku;
                 existingItem.price = price;
                 existingItem.quantity = quantity;
-                console.log("counting items");
-                state.numberOfProducts = +state.numberOfProducts + +quantity;
             }
         })
     }
 });
 
 export const { 
+    updateNumberOfProducts,
     decrementItemQuantity,
 } = itemsSlice.actions;
 

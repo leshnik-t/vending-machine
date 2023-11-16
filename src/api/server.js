@@ -11,7 +11,7 @@ const items = [
         "imageUrl": "https://img.freepik.com/premium-vector/realistic-lollipop-composition-with-image-sweet-candy-wooden-stick-transparent-background-vector-illustration_1284-67177.jpg",
         "sku": nanoid(),
         "price": "0.10",
-        "quantity": "3", 
+        "quantity": "15", 
     },
 ];
 const users = [

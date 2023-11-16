@@ -3,7 +3,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchUserByUsername } from './features/user/userSlice';
-import { fetchItemBySlotLabel, selectNumberOfProducts } from './features/items/itemsSlice';
+import { 
+        fetchItemBySlotLabel, 
+        updateNumberOfProducts,
+        selectNumberOfProducts 
+} from './features/items/itemsSlice';
 import { initializeCoins } from './features/coins/coinsSlice';
 
 
@@ -48,6 +52,9 @@ function App() {
           } else {
             if (promiseResult.type === 'user/fetchUserByUsername/fulfilled') {
               dispatch(initializeCoins([promiseResult.payload.wallet, promiseResult.payload.currency]));
+            }
+            if (promiseResult.type === 'items/fetchItemBySlotLabel/fulfilled') {
+              dispatch(updateNumberOfProducts(promiseResult.payload.quantity));
             }
           }
         });
